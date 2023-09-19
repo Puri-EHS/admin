@@ -1,0 +1,10 @@
+#!/bin/python
+
+import sys, string
+
+with open(sys.argv[1]) as file:
+    for line in file:
+        if not line.startswith('Last Name'):
+            words = line.split(',')
+            result = words[1] + ' ' + words[0]
+            print(string.capwords(result))
