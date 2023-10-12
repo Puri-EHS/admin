@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+# pylint: disable=missing-docstring
+# pylint: disable=redefined-outer-name
+
+import sys
+import json
+
+class Grader:
+    def __init__(self, file_name):
+        try:
+            with open(file_name, 'r', encoding='utf-8') as file:
+                state = json.load(file)
+                self.rubric = state['rubric']
+                self.grades = state['grades']
+        except FileNotFoundError:
+            self.rubric = []
+            self.grades = []
+
+if len(sys.argv) < 2:
+    sys.exit('Plese specify a file.')
+grader = Grader(sys.argv[1])
+
+def read_file():
+    with open(FILE_NAME, 'r', encoding='utf-8') as file:
+        return json.load(file)
+    except FileNotFoundError:
+        return { 'rubric': [], 'grades': [] }
+
+def write_file(state):
+    with open(FILE_NAME, 'w', encoding='utf-8') as file:
+        json.dump(state, file)
+        file.write('\n')
+
+state = read_file()
+write_file(state)
