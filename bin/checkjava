@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for i in *; do
+    echo $i
+    (
+        cd $i
+        wc $(find . -name \*.java)
+    )
+done

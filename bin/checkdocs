@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for i in *; do
+    echo $i
+    (
+        cd $i
+        find . -name \*.docx
+        wc $(find . -name \*.md)
+    )
+done
